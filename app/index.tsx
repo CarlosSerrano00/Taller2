@@ -1,4 +1,4 @@
-import { useRouter } from "expo-router";
+import { Href, useRouter } from "expo-router";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useCVContext } from "../context/CVContext";
 
@@ -12,6 +12,8 @@ export default function HomeScreen() {
     cvData.personalInfo.fullName && cvData.personalInfo.email;
   const hasExperience = cvData.experience.length > 0;
   const hasEducation = cvData.education.length > 0;
+  const skillsCount =
+    cvData.skills.softSkills.length + cvData.skills.hardSkills.length;
 
   return (
     <View style={styles.container}>
@@ -24,7 +26,7 @@ export default function HomeScreen() {
         </Text>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => router.push("./personal-info")}
+          onPress={() => router.push("/personal-info" as Href)}
         >
           <Text style={styles.buttonText}>Editar</Text>
         </TouchableOpacity>
@@ -39,7 +41,7 @@ export default function HomeScreen() {
         </Text>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => router.push("./experience")}
+          onPress={() => router.push("/experience" as Href)}
         >
           <Text style={styles.buttonText}>Agregar</Text>
         </TouchableOpacity>
@@ -54,16 +56,31 @@ export default function HomeScreen() {
         </Text>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => router.push("./education")}
+          onPress={() => router.push("/education" as Href)}
         >
           <Text style={styles.buttonText}>Agregar</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>4. Habilidades</Text>
+        <Text style={styles.status}>
+          {skillsCount > 0
+            ? `✓ ${skillsCount} agregada(s)`
+            : "Pendiente"}
+        </Text>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => router.push("/skills" as Href)}
+        >
+          <Text style={styles.buttonText}>Editar habilidades</Text>
         </TouchableOpacity>
       </View>
 
       <View style={{ marginTop: 30 }}>
         <TouchableOpacity
           style={[styles.button, { backgroundColor: "#2ecc71" }]}
-          onPress={() => router.push("./preview")}
+          onPress={() => router.push("/preview" as Href)}
         >
           <Text style={styles.buttonText}>Ver Vista Previa del CV</Text>
         </TouchableOpacity>

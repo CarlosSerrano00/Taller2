@@ -25,6 +25,14 @@
     },
     "plugins": [
       [
+        "expo-image-picker",
+        {
+          "photosPermission": "Permite seleccionar una foto para tu CV.",
+          "cameraPermission": "Permite tomar una foto para tu CV.",
+          "microphonePermission": false
+        }
+      ],
+      [
         "expo-router",
         {
           "root": "./app"

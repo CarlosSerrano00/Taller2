@@ -4,6 +4,12 @@ export interface PersonalInfo{
     phone: string;
     location: string;
     summary: string;
+    photoUri?: string | null;
+}
+
+export interface Skills {
+    softSkills: string[];
+    hardSkills: string[];
 }
 
 export interface Experience {
@@ -27,4 +33,5 @@ export interface CVData {
     personalInfo: PersonalInfo;
     experience: Experience[];
     education: Education[];
+    skills: Skills;
 }

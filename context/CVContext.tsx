@@ -1,10 +1,11 @@
 
 import { createContext, ReactNode, useContext, useState } from "react";
-import { CVData, Education, Experience, PersonalInfo } from "../types/cv.types";
+import { CVData, Education, Experience, PersonalInfo, Skills } from "../types/cv.types";
 
 interface CVContextType {
   cvData: CVData;
   updatePersonalInfo: (info: PersonalInfo) => void;
+  updateSkills: (skills: Skills) => void;
   addExperience: (exp: Experience) => void;
   updateExperience: (id: string, exp: Experience) => void;
   deleteExperience: (id: string) => void;
@@ -23,13 +24,22 @@ export const CVProvider = ({ children }: { children: ReactNode }) => {
       phone: "",
       location: "",
       summary: "",
+      photoUri: null,
     },
     experience: [],
     education: [],
+    skills: {
+      softSkills: [],
+      hardSkills: [],
+    },
   });
 
   const updatePersonalInfo = (info: PersonalInfo) => {
     setCVData((prev) => ({ ...prev, personalInfo: info }));
+  };
+
+  const updateSkills = (skills: Skills) => {
+    setCVData((prev) => ({ ...prev, skills }));
   };
 
   const addExperience = (exp: Experience) => {
@@ -79,6 +89,7 @@ export const CVProvider = ({ children }: { children: ReactNode }) => {
       value={{
         cvData,
         updatePersonalInfo,
+        updateSkills,
         addExperience,
         updateExperience,
         deleteExperience,

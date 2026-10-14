@@ -27,6 +27,8 @@ export const personalInfoSchema = z.object({
 
   summary: z.string()
     .max(500, "Máximo 500 caracteres"),
+
+  photoUri: z.string().nullable().optional(),
 });
 
 export type PersonalInfoForm = z.infer<
